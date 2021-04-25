@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="student1"
+		class="com.springproject.di.constructor.collections.Student">
+		<property name="studentId" value="12" />
+		<property name="studentName" value="Suresh" />
+		<property name="studentMarks" value="75" />
+	</bean>
+	<bean id="student2"
+		class="com.springproject.di.constructor.collections.Student">
+		<property name="studentId" value="15" />
+		<property name="studentName" value="Ganesh" />
+		<property name="studentMarks" value="85" />
+	</bean>
+
+	<bean id="department1"
+		class="com.springproject.di.constructor.collections.Department">
+		<property name="departId" value="67" />
+		<property name="departName" value="CS" />
+	</bean>
+	<bean id="department2"
+		class="com.springproject.di.constructor.collections.Department">
+		<property name="departId" value="78" />
+		<property name="departName" value="IT" />
+	</bean>
+	<bean id="department3"
+		class="com.springproject.di.constructor.collections.Department">
+		<property name="departId" value="56" />
+		<property name="departName" value="CIVIL" />
+	</bean>
+
+	<bean id="staff1"
+		class="com.springproject.di.constructor.collections.Staff">
+		<property name="staffId" value="22" />
+		<property name="staffName" value="Rejesh" />
+	</bean>
+	<bean id="staff2"
+		class="com.springproject.di.constructor.collections.Staff">
+		<property name="staffId" value="33" />
+		<property name="staffName" value="Girish" />
+	</bean>
+
+	<bean id="staffAddress1"
+		class="com.springproject.di.constructor.collections.StaffAddress">
+		<property name="city" value="Bangalore" />
+		<property name="state" value="Karnataka" />
+	</bean>
+
+	<bean id="staffAddress2"
+		class="com.springproject.di.constructor.collections.StaffAddress">
+		<property name="city" value="Mangalore" />
+		<property name="state" value="Karnataka" />
+	</bean>
+
+	<bean id="organisation"
+		class="com.springproject.di.constructor.collections.OrganisationForRef">
+		<constructor-arg name="students">
+			<list>
+				<ref bean="student1" />
+				<ref bean="student2" />
+			</list>
+		</constructor-arg>
+		<constructor-arg name="department">
+			<set>
+				<ref bean="department1" />
+				<ref bean="department2" />
+				<ref bean="department3" />
+			</set>
+		</constructor-arg>
+		<constructor-arg name="staff">
+			<map>
+				<entry key-ref="staff1" value-ref="staffAddress1" />
+				<entry key-ref="staff2" value-ref="staffAddress2" />
+			</map>
+		</constructor-arg>
+		<constructor-arg name="numberOfStudents">
+			<props>
+				<prop key="CS Department">100</prop>
+				<prop key="IT Department">200</prop>
+				<prop key="CIVIL Department">250</prop>
+			</props>
+		</constructor-arg>
+	</bean>
+</beans>
